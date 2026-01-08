@@ -51,11 +51,9 @@ Tambahkan job:
 
 *) Job name silahkan di sesuaikan.
 
-Reload Prometheus:
-> sudo systemctl reload prometheus
-
-Atau restart:
+Restart Prometheus:
 > sudo systemctl restart prometheus
+> sudo systemctl status prometheus
 
 Cek:
 http://SERVER_MONITORING:9090/targets
