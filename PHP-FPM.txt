@@ -65,11 +65,9 @@ Tambahkan job:
 
 *) Job name dan IP, silahkan di sesuaikan
 
-Reload Prometheus:
-> sudo systemctl reload prometheus
-
-Atau restart:
+Restart Prometheus:
 > sudo systemctl restart prometheus
+> sudo systemctl status prometheus
 
 
 Cek:
