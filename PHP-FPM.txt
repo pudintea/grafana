@@ -23,9 +23,9 @@ curl http://localhost/status
 
 2. Install PHP-FPM Exporter
 > cd /tmp
-> wget https://github.com/hipages/php-fpm_exporter/releases/latest/download/php-fpm_exporter_linux_amd64
-> chmod +x php-fpm_exporter_linux_amd64
-> sudo mv php-fpm_exporter_linux_amd64 /usr/local/bin/php-fpm_exporter
+> wget https://github.com/hipages/php-fpm_exporter/releases/download/v2.2.0/php-fpm_exporter_2.2.0_linux_amd64
+> chmod +x php-fpm_exporter_2.2.0_linux_amd64
+> sudo mv php-fpm_exporter_2.2.0_linux_amd64 /usr/local/bin/php-fpm_exporter
 > chmod +x /usr/local/bin/php-fpm_exporter
 
 Service
