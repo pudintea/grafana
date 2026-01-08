@@ -1,12 +1,3 @@
-
-==============================
-Nginx + Prometheus + Grafana
-==============================
-
-Simulasi menggunakan 2 server
-1. Server Reverse proxy
-2. Server Monitoring
-
 ========================================
 === Di server NGINX Reverse Proxy ======
 ========================================
