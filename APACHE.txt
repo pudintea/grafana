@@ -31,8 +31,8 @@ Jika keluar text → OK
 2. Install Apache Exporter
 
 > cd /tmp
-> wget https://github.com/Lusitaniae/apache_exporter/releases/download/v1.0.11/apache_exporter-1.0.11.linux-arm64.tar.gz
-> tar xvf apache_exporter-1.0.11.linux-arm64.tar.gz
+> wget https://github.com/Lusitaniae/apache_exporter/releases/download/v1.0.11/apache_exporter-1.0.11.linux-amd64.tar.gz
+> tar xvf apache_exporter-1.0.11.linux-amd64.tar.gz
 > sudo mv apache_exporter /usr/local/bin/
 > sudo chmod +x /usr/local/bin/apache_exporter
 
