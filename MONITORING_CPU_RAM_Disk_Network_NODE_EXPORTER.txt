@@ -39,5 +39,19 @@ TEST
 curl http://localhost:9100/metrics
 
 
+DI SERVER MONITORING
+=====================
+Edit config Prometheus:
+> sudo nano /etc/prometheus/prometheus.yml
+
+Tambahkan job:
+- job_name: 'server-apache-node'
+  static_configs:
+    - targets: ['IP_SERVER_NYA:9100']
+
+*) Job name silahkan di sesuaikan.
+
+
+
 
 ============ PUDIN SAEPUDIN, italazhar.com
