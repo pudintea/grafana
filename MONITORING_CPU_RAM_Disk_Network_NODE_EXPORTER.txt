@@ -1,0 +1,43 @@
+=====================================
+GRAFANA
+=====================================
+MONITORING, CPU, RAM, Disk, Network
+=====================================
+
+Install Node Exporter (WAJIB)
+
+Download & Install
+==================
+> cd /tmp
+> wget https://github.com/prometheus/node_exporter/releases/latest/download/node_exporter-1.8.1.linux-amd64.tar.gz
+> tar xvf node_exporter-1.8.1.linux-amd64.tar.gz
+> cd node_exporter-1.8.1.linux-amd64
+> sudo mv node_exporter /usr/local/bin/
+
+Buat Service
+============
+> sudo nano /etc/systemd/system/node_exporter.service
+
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=nobody
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+
+Aktifkan
+========
+sudo systemctl daemon-reload
+sudo systemctl enable --now node_exporter
+
+TEST
+=====
+curl http://localhost:9100/metrics
+
+
+
+============ PUDIN SAEPUDIN, italazhar.com
