@@ -1,0 +1,81 @@
+=====================================
+GRAFANA
+=====================================
+MONITORING PHP-FPM
+=====================================
+1. Enable PHP-FPM Status Page
+
+Edit pool config:
+> sudo nano /etc/php/*/fpm/pool.d/www.conf
+
+
+Cari & set:
+pm.status_path = /status
+
+
+Reload PHP-FPM:
+sudo systemctl reload php*-fpm
+*) Sesuaikan versi php-fpm nya
+
+Test:
+curl http://localhost/status
+
+
+2. Install PHP-FPM Exporter
+> cd /tmp
+> wget https://github.com/hipages/php-fpm_exporter/releases/latest/download/php-fpm_exporter_linux_amd64
+> chmod +x php-fpm_exporter_linux_amd64
+> sudo mv php-fpm_exporter_linux_amd64 /usr/local/bin/php-fpm_exporter
+> chmod +x /usr/local/bin/php-fpm_exporter
+
+Service
+=======
+> sudo nano /etc/systemd/system/php-fpm_exporter.service
+Isi:
+[Unit]
+Description=PHP-FPM Exporter
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/php-fpm_exporter \
+  --phpfpm.scrape-uri http://127.0.0.1/status
+
+[Install]
+WantedBy=multi-user.target
+
+
+Enable:
+> sudo systemctl daemon-reload
+> sudo systemctl enable --now php-fpm_exporter
+
+Test:
+curl http://localhost:9253/metrics
+
+KONFIGURASI PROMETHEUS (SERVER MONITORING)
+SERVER MONITORING
+
+Edit config Prometheus:
+sudo nano /etc/prometheus/prometheus.yml
+
+Tambahkan job:
+
+- job_name: 'server-apache-phpfpm'
+  static_configs:
+    - targets: ['IP_SERVER_NYA:9253']
+
+*) Job name dan IP, silahkan di sesuaikan
+
+Reload Prometheus:
+> sudo systemctl reload prometheus
+
+Atau restart:
+> sudo systemctl restart prometheus
+
+
+Cek:
+http://SERVER_MONITORING:9090/targets
+
+Pastikan State = UP
+
+
+======= PUDIN SAEPUDIN, italazhar.com
