@@ -69,9 +69,7 @@ DI SERVER MONITORING
 Edit config Prometheus:
 sudo nano /etc/prometheus/prometheus.yml
 
-
 Tambahkan job:
-
 - job_name: 'server-apache-apache'
   static_configs:
     - targets: ['IP_SERVER_NYA:9117']
@@ -79,6 +77,15 @@ Tambahkan job:
 
 *) job_name dan IP, silahkan di sesuaikan.
 
+Reload Prometheus:
+> sudo systemctl reload prometheus
 
+Atau restart:
+> sudo systemctl restart prometheus
+
+Cek:
+http://SERVER_MONITORING:9090/targets
+
+Pastikan State = UP
 
 ======= PUDIN SAEPUDIN, italazhar.com
