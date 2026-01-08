@@ -1,0 +1,84 @@
+=====================================
+GRAFANA
+=====================================
+MONITORING APACHE
+=====================================
+
+1. Enable Apache Status (Wajib untuk apache_exporter)
+> sudo a2enmod status
+
+Edit/Buat config:
+> sudo nano /etc/apache2/conf-enabled/status.conf
+
+Pastikan seperti ini:
+<IfModule mod_status.c>
+    ExtendedStatus On
+    <Location /server-status>
+        SetHandler server-status
+        Require local
+    </Location>
+</IfModule>
+
+
+Reload Apache:
+> sudo systemctl reload apache2
+
+Test:
+curl http://localhost/server-status?auto
+
+Jika keluar text → OK
+
+2. Install Apache Exporter
+
+> cd /tmp
+> wget https://github.com/Lusitaniae/apache_exporter/releases/latest/download/apache_exporter-0.11.0.linux-amd64.tar.gz
+> tar xvf apache_exporter-0.11.0.linux-amd64.tar.gz
+> sudo mv apache_exporter /usr/local/bin/
+
+
+Service
+=======
+> sudo nano /etc/systemd/system/apache_exporter.service
+
+Isi:
+[Unit]
+Description=Apache Exporter
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/apache_exporter \
+  --scrape_uri=http://127.0.0.1/server-status?auto
+
+[Install]
+WantedBy=multi-user.target
+
+
+Enable:
+=======
+sudo systemctl daemon-reload
+sudo systemctl enable --now apache_exporter
+
+
+Test:
+curl http://localhost:9117/metrics
+
+
+
+DI SERVER MONITORING
+======================
+Edit config Prometheus:
+sudo nano /etc/prometheus/prometheus.yml
+
+
+Tambahkan job:
+
+- job_name: 'server-apache-apache'
+  static_configs:
+    - targets: ['IP_SERVER_NYA:9117']
+
+
+*) job_name dan IP, silahkan di sesuaikan.
+
+
+
+======= PUDIN SAEPUDIN, italazhar.com
