@@ -51,7 +51,16 @@ Tambahkan job:
 
 *) Job name silahkan di sesuaikan.
 
+Reload Prometheus:
+> sudo systemctl reload prometheus
 
+Atau restart:
+> sudo systemctl restart prometheus
+
+Cek:
+http://SERVER_MONITORING:9090/targets
+
+Pastikan State = UP
 
 
 ============ PUDIN SAEPUDIN, italazhar.com
