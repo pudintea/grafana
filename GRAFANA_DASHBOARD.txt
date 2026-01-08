@@ -1,0 +1,16 @@
+GRAFANA DASHBOARD
+====================
+Import Dashboard Siap Pakai
+
+Di Grafana → Import Dashboard
+
+Komponen,	Dashboard ID
+Node Exporter,	1860
+Apache,	3894
+PHP-FPM,	4912
+
+Pilih datasource: Prometheus
+
+
+
+======= PUDIN SAEPUDIN, italazhar.com
